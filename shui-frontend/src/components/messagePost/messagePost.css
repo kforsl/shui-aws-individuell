@@ -1,0 +1,48 @@
+article {
+    background-color: white;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    position: relative;
+    width: 100%;
+}
+
+article:first-of-type {
+    margin-top: 5.5rem;
+}
+
+article:last-of-type {
+    margin-bottom: 10rem;
+}
+
+article::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2rem;
+    right: 0;
+    height: 2rem;
+    width: 2rem;
+    background-color: white;
+    box-shadow: inset 0px 4px 8px rgba(0,0,0,.4);
+    clip-path: polygon(0 0, 0% 100%, 100% 0);
+}
+
+p {
+    font-size: .75rem;
+    margin-bottom: .5rem;
+    opacity: 60%;
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight:  400;
+    margin-bottom: 1.5rem;
+    line-height: 1.5rem;
+}
+
+h3 {
+    font-size: 1rem;
+    font-family: 700;
+    font-style: italic;
+}
+

@@ -1,0 +1,66 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: ${file(./local.yml):organisation}
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: shui-backend
+
+provider:
+    name: aws
+    runtime: nodejs20.x
+    region: eu-north-1
+    iam:
+        role: ${file(./local.yml):iamRole}
+    httpApi:
+        cors: true
+
+build:
+    esbuild:
+        minify: true
+
+package:
+    individually: true
+
+functions:
+    GetMessages:
+        handler: functions/GetMessages/index.handler
+        events:
+            - httpApi:
+                  path: /api/messages
+                  method: get
+    GetUserMessages:
+        handler: functions/GetUserMessages/index.handler
+        events:
+            - httpApi:
+                  path: /api/messages/{username}
+                  method: get
+    PostMessage:
+        handler: functions/PostMessage/index.handler
+        events:
+            - httpApi:
+                  path: /api/messages
+                  method: post
+    PutMessage:
+        handler: functions/PutMessage/index.handler
+        events:
+            - httpApi:
+                  path: /api/messages/{id}
+                  method: put
+    DeleteMessage:
+        handler: functions/DeleteMessage/index.handler
+        events:
+            - httpApi:
+                  path: /api/messages/{id}
+                  method: delete
+
+resources:
+    Resources:
+        ShuiMessageBoardTable:
+            Type: AWS::DynamoDB::Table
+            Properties:
+                TableName: "shui-message-board-db"
+                AttributeDefinitions:
+                    - AttributeName: "id" # Definiera attribut för din partition key
+                      AttributeType: "S" # S för sträng
+                KeySchema:
+                    - AttributeName: "id" # Partition key
+                      KeyType: HASH # Detta är din PK (Partition Key)
+                BillingMode: PAY_PER_REQUEST # Betalning per användning

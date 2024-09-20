@@ -1,0 +1,39 @@
+.post__container {
+    padding: 0 1rem;
+    overflow: scroll;
+}
+
+.post__filter-container {
+    position: absolute;
+    background-color: #19274a;
+    width: 100%;
+    max-width: 500px;
+    padding: 0.75rem;
+    padding-left: 6rem;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post__filter-input {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: none;
+    width: 100%;
+}
+
+.post__filter-icon {
+    padding: 0.5rem 1rem;
+}
+
+.post__empty-message {
+    height: 100%;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

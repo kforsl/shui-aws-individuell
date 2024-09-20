@@ -1,0 +1,8 @@
+main {
+    max-width: 500px;
+    height: 100svh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 1fr;
+    position: relative;
+}
