@@ -5,23 +5,12 @@ import Footer from "../../components/footer/Footer";
 import MessagePost from "../../components/messagePost/MessagePost";
 import filter from "../../assets/ion_filter.svg";
 
-const sortMessages = async (messages, setMessages) => {
-    setMessages([]);
-    const sortedMessages = await messages.sort((a, b) => {
-        const timeA = new Date(a.createdAt).getTime();
-        const timeB = new Date(b.createdAt).getTime();
-        if (timeA < timeB) return -1;
-        if (timeA > timeB) return 1;
-        return 0;
-    });
-    setMessages(sortedMessages);
-};
-
 export default function HomePage() {
     const [allMessages, setAllMessages] = useState([]);
     const [messages, setMessages] = useState([]);
     const [isFooterBgShowing, setIsFooterBgShowing] = useState(true);
     const [userFilterString, SetUserFilterString] = useState("");
+    const [isDateFilteredLow, setIsDateFilteredLow] = useState(false);
 
     useEffect(() => {
         getMessages(setMessages, setAllMessages);
@@ -42,6 +31,25 @@ export default function HomePage() {
         }
     }, [userFilterString]);
 
+    const sortMessages = async () => {
+        setMessages([]);
+
+        let sortedMessages = await messages.sort((a, b) => {
+            const timeA = new Date(a.createdAt).getTime();
+            const timeB = new Date(b.createdAt).getTime();
+            if (timeA < timeB) return -1;
+            if (timeA > timeB) return 1;
+            return 0;
+        });
+
+        if (isDateFilteredLow) {
+            sortedMessages = sortedMessages.reverse();
+        }
+
+        setIsDateFilteredLow(!isDateFilteredLow);
+        setMessages(sortedMessages);
+    };
+
     return (
         <>
             <section className='post__filter-container'>
@@ -52,7 +60,7 @@ export default function HomePage() {
                     onChange={(e) => SetUserFilterString(e.target.value)}
                 />
                 <img
-                    onClick={() => sortMessages(messages, setMessages)}
+                    onClick={sortMessages}
                     className='post__filter-icon'
                     src={filter}
                     alt='filter icon'
