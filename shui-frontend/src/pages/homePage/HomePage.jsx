@@ -1,18 +1,9 @@
-import { useState } from "react";
-import Footer from "../../components/footer/Footer";
+import { useState, useEffect } from "react";
 import "./homePage.css";
-import { useEffect } from "react";
+import { getMessages } from "../../functions/api";
+import Footer from "../../components/footer/Footer";
 import MessagePost from "../../components/messagePost/MessagePost";
-import axios from "axios";
 import filter from "../../assets/ion_filter.svg";
-
-const getMessages = async (setAllMessages, setMessages) => {
-    const response = await axios.get(
-        "https://dtuf936zdi.execute-api.eu-north-1.amazonaws.com/api/messages"
-    );
-    setAllMessages(response.data.data);
-    setMessages(response.data.data);
-};
 
 const sortMessages = async (messages, setMessages) => {
     setMessages([]);
@@ -33,7 +24,7 @@ export default function HomePage() {
     const [userFilterString, SetUserFilterString] = useState("");
 
     useEffect(() => {
-        getMessages(setAllMessages, setMessages);
+        getMessages(setMessages, setAllMessages);
     }, []);
 
     useEffect(() => {
@@ -64,7 +55,7 @@ export default function HomePage() {
                     onClick={() => sortMessages(messages, setMessages)}
                     className='post__filter-icon'
                     src={filter}
-                    alt='filter'
+                    alt='filter icon'
                 />
             </section>
             <section className='post__container'>

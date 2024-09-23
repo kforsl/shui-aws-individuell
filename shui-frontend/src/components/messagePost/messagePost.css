@@ -1,20 +1,25 @@
-article {
+.post {
     background-color: white;
     margin-bottom: 3rem;
-    padding: 1rem;
     position: relative;
     width: 100%;
+    padding: 1rem;
 }
 
-article:first-of-type {
+.post__link {
+    color: black;
+    text-decoration: none;
+}
+
+.post:first-of-type {
     margin-top: 5.5rem;
 }
 
-article:last-of-type {
+.post:last-of-type {
     margin-bottom: 10rem;
 }
 
-article::after {
+.post::after {
     content: "";
     display: block;
     position: absolute;
@@ -23,26 +28,25 @@ article::after {
     height: 2rem;
     width: 2rem;
     background-color: white;
-    box-shadow: inset 0px 4px 8px rgba(0,0,0,.4);
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.4);
     clip-path: polygon(0 0, 0% 100%, 100% 0);
 }
 
-p {
-    font-size: .75rem;
-    margin-bottom: .5rem;
+.post__date {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
     opacity: 60%;
 }
 
-h2 {
+.post__text {
     font-size: 1rem;
-    font-weight:  400;
+    font-weight: 400;
     margin-bottom: 1.5rem;
     line-height: 1.5rem;
 }
 
-h3 {
+.post__user {
     font-size: 1rem;
     font-family: 700;
     font-style: italic;
 }
-

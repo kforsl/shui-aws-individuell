@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./postPage.css";
 import axios from "axios";
+import { submitForm } from "../../functions/api";
 
 export default function PostPage() {
     const [postText, setPostText] = useState("");
@@ -16,55 +17,36 @@ export default function PostPage() {
         setPostId(id);
     }, []);
 
-    const putMessage = async (e) => {
-        e.preventDefault();
-
-        await axios.put(
-            `https://dtuf936zdi.execute-api.eu-north-1.amazonaws.com/api/messages/${postId}`,
-            {
-                text: postText,
-                username: postUsername,
-            }
-        );
-
-        window.location.href = window.location.origin;
-    };
-
-    const deleteMessage = async (e) => {
-        e.preventDefault();
-
-        await axios.delete(
-            `https://dtuf936zdi.execute-api.eu-north-1.amazonaws.com/api/messages/${postId}`
-        );
-
-        window.location.href = window.location.origin;
-    };
-
     return (
-        <form className='form'>
-            <section className='form__post-container'>
+        <form
+            className='postForm'
+            onSubmit={(e) => submitForm(e, postText, postUsername, postId)}
+        >
+            <section className='postForm__post-container'>
                 <textarea
                     onChange={(e) => setPostText(e.target.value)}
-                    className='form__post-input'
+                    className='postForm__post-input'
                     name=''
                     id='changePost-text'
                     placeholder='Lägg till ny...... '
                     value={postText}
+                    required
                 ></textarea>
             </section>
-            <section className='form__bottom-container'>
+            <section className='postForm__bottom-container'>
                 <input
                     onChange={(e) => setPostUsername(e.target.value)}
-                    className='form__username-input'
+                    className='postForm__username-input'
                     type='text'
                     id='changePost-user'
                     placeholder='Användarnamn'
                     value={postUsername}
+                    required
                 />
-                <button className='form__submit-btn' onClick={putMessage}>
+                <button className='postForm__submit-btn' id='changePost'>
                     Ändra meddelande
                 </button>
-                <button className='form__submit-btn' onClick={deleteMessage}>
+                <button className='postForm__submit-btn' id='deletePost'>
                     Ta Bort
                 </button>
             </section>

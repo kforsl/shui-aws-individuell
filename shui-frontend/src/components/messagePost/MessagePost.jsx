@@ -1,25 +1,30 @@
+import { Link } from "react-router-dom";
 import "./messagePost.css";
 
+const addClickedPostToStorage = (post) => {
+    sessionStorage.setItem(
+        "clickedPost",
+        JSON.stringify({
+            createdAt: post.createdAt,
+            id: post.id,
+            text: post.text,
+            username: post.username,
+        })
+    );
+};
+
 export default function MessagePost({ post }) {
-    const func = () => {
-        sessionStorage.setItem(
-            "clickedPost",
-            JSON.stringify({
-                createdAt: post.createdAt,
-                id: post.id,
-                text: post.text,
-                username: post.username,
-            })
-        );
-
-        window.location.href = post.id;
-    };
-
     return (
-        <article onClick={func}>
-            <p>{post.createdAt}</p>
-            <h2>{post.text}</h2>
-            <h3> - {post.username}</h3>
+        <article className='post'>
+            <Link
+                className='post__link'
+                to={`/${post.id}`}
+                onClick={() => addClickedPostToStorage(post)}
+            >
+                <p className='post__date'>{post.createdAt}</p>
+                <h2 className='post__text'>{post.text}</h2>
+                <h3 className='post__user'> - {post.username}</h3>
+            </Link>
         </article>
     );
 }

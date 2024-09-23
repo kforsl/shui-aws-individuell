@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <header className='header'>
             <figure className='header__icon'>
-                <img src={logo} alt='S' />
+                <img src={logo} alt='S logo' />
             </figure>
         </header>
     );

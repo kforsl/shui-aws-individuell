@@ -24,6 +24,7 @@
 
 .post__filter-icon {
     padding: 0.5rem 1rem;
+    cursor: pointer;
 }
 
 .post__empty-message {
