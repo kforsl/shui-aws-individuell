@@ -1,0 +1,20 @@
+.header {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+}
+
+.header__icon {
+    background-color: #ef4343;
+    padding: 1.9rem 0.5rem 0.9rem 0.5rem;
+    width: fit-content;
+    border-radius: 0 0 4px 4px;
+    margin-left: 2rem;
+}
+
+.header__input {
+    height: fit-content;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: none;
+}

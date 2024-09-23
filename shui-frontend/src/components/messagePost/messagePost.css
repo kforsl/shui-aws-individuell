@@ -1,0 +1,52 @@
+.post {
+    background-color: white;
+    margin-bottom: 3rem;
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+}
+
+.post__link {
+    color: black;
+    text-decoration: none;
+}
+
+.post:first-of-type {
+    margin-top: 5.5rem;
+}
+
+.post:last-of-type {
+    margin-bottom: 10rem;
+}
+
+.post::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2rem;
+    right: 0;
+    height: 2rem;
+    width: 2rem;
+    background-color: white;
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.4);
+    clip-path: polygon(0 0, 0% 100%, 100% 0);
+}
+
+.post__date {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    opacity: 60%;
+}
+
+.post__text {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    line-height: 1.5rem;
+}
+
+.post__user {
+    font-size: 1rem;
+    font-family: 700;
+    font-style: italic;
+}
