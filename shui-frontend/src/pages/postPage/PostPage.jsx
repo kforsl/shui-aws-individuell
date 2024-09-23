@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./postPage.css";
-import axios from "axios";
 import { submitForm } from "../../functions/api";
 
 export default function PostPage() {
@@ -9,12 +8,20 @@ export default function PostPage() {
     const [postId, setPostId] = useState("");
 
     useEffect(() => {
+        const pathName = window.location.pathname;
+        const pathId = pathName.substring(1, pathName.length);
+
         const { id, text, username } = JSON.parse(
             sessionStorage.getItem("clickedPost")
         );
-        setPostText(text);
-        setPostUsername(username);
-        setPostId(id);
+
+        if (pathId === id) {
+            setPostText(text);
+            setPostUsername(username);
+            setPostId(id);
+        } else {
+            window.location.href = window.location.origin;
+        }
     }, []);
 
     return (
