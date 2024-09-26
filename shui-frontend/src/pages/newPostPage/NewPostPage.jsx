@@ -16,6 +16,7 @@ export default function NewPostPage() {
                     onChange={(e) => setNewPostText(e.target.value)}
                     className='newPostForm__post-input'
                     placeholder='Lägg till ny...... '
+                    required
                 ></textarea>
             </section>
             <section className='newPostForm__bottom-container'>
@@ -24,6 +25,7 @@ export default function NewPostPage() {
                     className='newPostForm__username-input'
                     type='text'
                     placeholder='Användarnamn'
+                    required
                 />
                 <button className='newPostForm__submit-btn' id='addPost'>
                     Publicera
